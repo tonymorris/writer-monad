@@ -1,7 +1,7 @@
-Docbook Document
-================
+Logging Without Side-effects
+============================
 
-A template from which to create a Docbook document.
+Slides for a presentation about the writer monad.
 
 Setting up
 ==========
