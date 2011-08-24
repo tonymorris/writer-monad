@@ -1,13 +1,19 @@
-personal_ws-1.1 en 28 
+personal_ws-1.1 en 37 
+stdout
 organization
 waivable
 AUTHORIZED
+monad
 synching
 Ssection
+WriterDemo
+accum
 phonogram
 sublicense
 Docbook
+scala
 recognizably
+monoid
 Licence
 ShareAlike
 TODO
@@ -15,6 +21,7 @@ pre
 NONINFRINGEMENT
 utilizing
 Unported
+monads
 PGP
 Licensor's
 honor
@@ -24,6 +31,8 @@ CCPL
 relicensing
 WIPO
 synchronization
+boolean
 Licensor
 Berne
 phonograms
+hs

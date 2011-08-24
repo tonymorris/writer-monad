@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY mdash          "&#x2014;">
+]>
+
+<sect1 xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Demo</title>
+  <sect2>
+    <title>Use-case</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Pass an integer value on the command line, log the value.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Add 7 to the value, log the message <quote>adding 7</quote>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Multiply the current value by 3, no associated log.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Reverse the digits of the value, log a message with the value.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Determine if the current value is even, log the message <quote>is even?</quote>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Print the resulting boolean, then print the accumulated log.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Show us the code</title>
+    <programlisting><xi:include href="WriterDemo.scala" parse="text"/></programlisting>
+  </sect2>
+</sect1>

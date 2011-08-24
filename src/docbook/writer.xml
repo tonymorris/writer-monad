@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY mdash          "&#x2014;">
+]>
+
+<sect1 xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Writer Structure</title>
+  <sect2>
+    <title>Accumulation</title>
+    <para>
+      <programlisting>
+trait Accumulate[T] {
+  def empty: T
+  def accum(t1: T, t2: T): T
+}</programlisting>
+      <itemizedlist>
+        <listitem>
+          <para>
+            Accumulation can be captured by this interface, often called a <firstterm>Monoid</firstterm><footnote>
+              <para>
+                Implementations are expected to satisfy some laws.
+              </para>
+            </footnote>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Starting with <code>empty</code>, we accumulate values with the <code>accum</code> function.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Example implementations:
+            <itemizedlist>
+              <listitem>
+                <para>
+                  <code>empty = 0</code> / <code>accum = +</code> <emphasis>(summation)</emphasis>
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>empty = Nil</code> / <code>accum = :::</code> <emphasis>(list append)</emphasis> <emphasis role="bold">&lt;-- we will use this one for keeping logs</emphasis>
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>empty = x => x</code> / <code>accum = _ compose _</code> <emphasis>(endomorphism)</emphasis>
+                </para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </sect2>
+  <sect2>
+    <title>Pair with Accumulation</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Logging is a pair with accumulation defined for the logging side of the pair. <code>Accumulate[LOG] => (LOG, A)</code>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Given <code>case class Writer[LOG, A](log: LOG, a: A)</code>,
+          logging is accumulation defined for the logging side.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>Accumulate[LOG] => Writer[LOG, A]</code>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          But what does it mean to accumulate automatically so that we can associate our log value (or no log value if we choose) then get on with the computation?
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>It's those pesky monads again!</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <code>Accumulate[LOG] =></code>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <code>(A => B) => Writer[LOG, A] => Writer[LOG, B]</code>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <code>(A => Writer[LOG, B]) => Writer[LOG, A] => Writer[LOG, B]</code>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          From here on, we'll specialise log values to <code>List[String]</code> for simplicity, rather than generalising to any monoid/accumulate<footnote>
+            <para>
+              However, in practice <code>List</code> is inappropriate due to the complexity of the List.append method. Typically, we would use a <code>Endo[List[String]]</code> or a <code>FingerTree[String]</code> with better complexity for append.
+            </para>
+          </footnote>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Writer Monad</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Let's write it!
+          <programlisting><xi:include href="Writer.scala" parse="text"/></programlisting>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The writer monad implementation (<code>flatMap</code>) automatically accumulates log messages with the list append method <emphasis>(Accumulate.accum)</emphasis>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <code>nolog</code> method is a convenience that specifies an empty list <emphasis>(Accumulate.empty)</emphasis>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <code>withlog</code> method is a convenience for specifying a single-entry log.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <code>withvaluelog</code> method is a convenience for specifying a single-entry log by running a function on the value.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>

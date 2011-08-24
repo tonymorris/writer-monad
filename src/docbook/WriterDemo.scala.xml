@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<appendix id="WriterDemo.scala" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>WriterDemo.scala</title>
+  <subtitle>A demonstration of using the writer monad in Scala</subtitle>
+  <programlisting><xi:include href="WriterDemo.scala" parse="text"/></programlisting>
+</appendix>

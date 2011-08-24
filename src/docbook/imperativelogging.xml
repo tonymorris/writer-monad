@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY mdash          "&#x2014;">
+]>
+
+<sect1>
+  <title>What is logging?</title>
+  <sect2>
+    <title>Imperative Logging</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Logging in a dysfunctional environment emphasises the channel on which to conduct the effects e.g. files or stdout.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Code has <emphasis>logging statements</emphasis> scattered throughout what would otherwise be code-without-logging.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There have been various attempts to provide a separation to allow the programmer to focus on the programming task in this setting.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">None work</emphasis>. But you already knew that.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Contrast</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          In functional environments, we <emphasis>delineate the essence of a problem from its execution model</emphasis>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          So what is the essence of logging?
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Essence of logging</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Essentially, we wish to compute a value (call it <code>A</code>), while associating another value (call it <code>LOG</code>).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Logging is a pair! <code>(LOG, A)</code>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          However, we wish to accumulate the log without our intervention, while computing the values that solve the problem at hand.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Dysfunctional programming does this by pushing out to a stream, starting with an empty stream.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          What is the essence of accumulation?
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>
